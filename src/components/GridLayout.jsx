@@ -26,7 +26,7 @@ const GridLayout = ({ layoutConfig }) => {
     }
   }, [activeCells]);
   return (
-    <section className="grid grid-cols-3 gap-2 md:gap-4 max-w-lg mx-auto p-3 lg:p-0">
+    <section className="grid grid-cols-3 grid-rows-3 gap-2 md:gap-4 max-w-lg mx-auto p-3 lg:p-0">
       {layoutConfig
         .flat(1)
         .map((show, index) =>
