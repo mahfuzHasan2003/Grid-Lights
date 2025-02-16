@@ -1,13 +1,8 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import SingleCell from "./SingleCell";
 
-const GridLayout = () => {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const layoutConfig = [
-    [1, 1, 1],
-    [1, 0, 1],
-    [1, 1, 1],
-  ];
+const GridLayout = ({ layoutConfig }) => {
   const [activeCells, setActiveCells] = useState([]);
   const [isReversing, setIsReversing] = useState(false);
   // cell deactivation functionality
@@ -33,9 +28,9 @@ const GridLayout = () => {
   return (
     <section className="grid grid-cols-3 gap-2 md:gap-4 max-w-lg mx-auto p-3 lg:p-0">
       {layoutConfig
-        .flat()
-        .map((isTrue, index) =>
-          isTrue ? (
+        .flat(1)
+        .map((show, index) =>
+          show ? (
             <SingleCell
               key={index}
               index={index}
@@ -49,6 +44,9 @@ const GridLayout = () => {
         )}
     </section>
   );
+};
+GridLayout.propTypes = {
+  layoutConfig: PropTypes.arrayOf(PropTypes.array).isRequired,
 };
 
 export default GridLayout;
