@@ -12,5 +12,8 @@
 
 .animate-gradient {
   background-size: 200% 200%;
-  animation: gradient 7s ease infinite;
+  animation: gradient 5s ease infinite;
+}
+#app-heading {
+  -webkit-text-stroke: 0.5px #ccc;
 }
