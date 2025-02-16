@@ -10,6 +10,7 @@ const GridLayout = () => {
   ];
   const [activeCells, setActiveCells] = useState([]);
   const [isReversing, setIsReversing] = useState(false);
+  // cell deactivation functionality
   const deactivateCells = () => {
     setIsReversing(true);
     const timer = setInterval(() => {
@@ -22,7 +23,7 @@ const GridLayout = () => {
         }
         return copiedActiveCells;
       });
-    }, 1000);
+    }, 300);
   };
   useEffect(() => {
     if (activeCells.length === layoutConfig.flat().filter(Boolean).length) {
