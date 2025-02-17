@@ -5,7 +5,7 @@ import SingleCell from "./SingleCell";
 const GridLayout = ({ layoutConfig }) => {
   const [activeCells, setActiveCells] = useState([]);
   const [isReversing, setIsReversing] = useState(false);
-  // cell deactivation functionality
+  // cells deactivation functionality
   const deactivateCells = () => {
     setIsReversing(true);
     const timer = setInterval(() => {

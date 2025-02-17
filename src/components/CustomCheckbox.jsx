@@ -25,7 +25,7 @@ const CustomCheckbox = ({ index, setLayoutConfig, layoutConfig }) => {
         }
       />
       <label htmlFor={index}>
-        <span></span>
+        <span className="cursor-pointer"></span>
       </label>
     </>
   );

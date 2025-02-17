@@ -6,7 +6,9 @@ const SetLayout = ({ setLayoutConfig, layoutConfig }) => {
   const [position, setPosition] = useState({ x: 128, y: 40 });
   const [dragging, setDragging] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+  const [hideLayout, setHideLayout] = useState(false);
   const handleStart = (event) => {
+    event.preventDefault();
     setDragging(true);
     const clientX = event.touches ? event.touches[0].clientX : event.clientX;
     const clientY = event.touches ? event.touches[0].clientY : event.clientY;
@@ -27,8 +29,6 @@ const SetLayout = ({ setLayoutConfig, layoutConfig }) => {
       x: prev.x - deltaX, // Move rightward
       y: prev.y + deltaY, // Move downward
     }));
-
-    // Update start position
     setStartPos({ x: clientX, y: clientY });
   };
 
@@ -36,12 +36,9 @@ const SetLayout = ({ setLayoutConfig, layoutConfig }) => {
   const handleEnd = () => {
     setDragging(false);
   };
-  const handleRemoveLayout = () => {
-    layoutRef.current.className += " scale-0";
-  };
   return (
     <div
-      className="fixed border rounded-md cursor-move backdrop-blur-sm max-w-48 transition-transform"
+      className="fixed cursor-move max-w-48"
       style={{
         top: `${position.y}px`,
         right: `${position.x}px`,
@@ -53,29 +50,38 @@ const SetLayout = ({ setLayoutConfig, layoutConfig }) => {
       onTouchStart={handleStart}
       onTouchMove={handleMove}
       onTouchEnd={handleEnd}
-      ref={layoutRef}
     >
-      <div className="relative p-5">
+      <div className="relative">
         <button
-          className="absolute bg-red-500 rounded-full text-md w-8 aspect-square flex items-center justify-center -top-4 -right-4 cursor-pointer"
-          onClick={handleRemoveLayout}
+          className="absolute bg-red-500 rounded-full text-md w-8 aspect-square flex items-center justify-center -top-4 -right-4 cursor-pointer font-bold z-10"
+          onClick={() => setHideLayout((prev) => !prev)}
         >
-          ×
+          {hideLayout ? "+" : "×"}
         </button>
-        <p>Drag me &amp; place where you want!!</p>
-        <p className="font-mono mb-3 text-red-500 text-sm">
-          2 ≤ checkedBox ≤ 9
-        </p>
-        <div className="grid grid-cols-3 max-w-fit gap-2 mx-auto">
-          {[...Array(9)].map((_, index) => (
-            <CustomCheckbox
-              key={index}
-              index={index}
-              setLayoutConfig={setLayoutConfig}
-              layoutConfig={layoutConfig}
-            />
-          ))}
-        </div>
+
+        {!hideLayout && (
+          <div
+            ref={layoutRef}
+            className="border p-5 transition-transform origin-top-right rounded-md backdrop-blur-sm"
+          >
+            <p className="font-mono leading-none">
+              Drag me &amp; place where you want!!
+            </p>
+            <p className="font-mono mb-2 text-red-500 text-sm">
+              2 ≤ checkedBox ≤ 9
+            </p>
+            <div className="grid grid-cols-3 max-w-fit gap-2 mx-auto">
+              {[...Array(9)].map((_, index) => (
+                <CustomCheckbox
+                  key={index}
+                  index={index}
+                  setLayoutConfig={setLayoutConfig}
+                  layoutConfig={layoutConfig}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

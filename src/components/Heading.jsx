@@ -2,7 +2,7 @@ import "./Heading.css";
 const Heading = () => {
   return (
     <div className="mb-5">
-      <h1 className="text-3xl md:text-6xl font-extrabold uppercase">
+      <h1 className="text-4xl md:text-6xl font-extrabold uppercase">
         <span
           id="app-heading"
           className="bg-gradient-to-r from-orange-500 via-pink-500 to-yellow-500 animate-gradient text-transparent bg-clip-text"
