@@ -2,7 +2,7 @@
 
 🌟 **Overview**
 
-Grid Lights is a customizable grid-based UI component that allows users to toggle lights within a dynamic grid system. Built using React, Tailwind CSS, and modern JavaScript, Grid Light is designed for interactive applications, settings panels, or creative UI experiments.
+Grid Lights is a customizable grid-based UI system that allows users to toggle lights within a dynamic grid system. Built using React, Tailwind CSS, and modern JavaScript, Grid Light is designed for interactive applications, settings panels, or creative UI experiments.
 
 🚀 **Features**
 
