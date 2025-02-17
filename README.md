@@ -38,6 +38,6 @@ Follow these steps to get the project up and running:
    npm run dev
    ```
 
-🖥 **Live URL**
+🖥 **Live View**
 
 Check out the live view [here](https://grid-lights.surge.sh/).
